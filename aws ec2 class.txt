@@ -1,0 +1,515 @@
+AWS :
+  launching instnace 
+when i see the ec2  machine you need to remember the same of the key words that is AMI amazon machine instance ,
+
+Q: why 64 bit 
+A : if you have go with 64 bit in arghitecture you can use more ram , when you  are buying ec2 machine they are  aws selinging 
+   some service are free  and some service are cost ,
+=======================================00000000000000000000000000=================================================
+ec2 machine types ;
+		1) on demand 
+		2)spot 
+		3)rserved
+		4)dedicated
+
+=> when you login into AWS account by defaults taking on region network (VPC),
+==>each region you can create 5 vpcs netwoks 
+==>by defaults AWS is creates only one region, if you need can create another 4 vps ,theres is limit
+in 1 region into 5 vpcs
+NOTE: 
+	==>in one vpc you can crate  n numbers of subnets,.  
+===========================000000000============================================================
+Q: what is the vpc 
+ans: vps is the combinations of subnets
+region = vpc
+AZ = 1 subnet
+
+=========================########################==========================
+Q:what is the benifit of clode and why use the clode 
+ans: GO GOOGLE IN MINITUS
+ =====================#################+====================================
+
+ Q: what is internet ansd intrnet ,exaples
+ans: INTERNET:
+	 The intranet is globally connected to conputres ,that enables people to share information and communicate with each other
+	The internet create connections between computer arround the world
+	ex: public ip
+	public ip is started is =13, 9 , 200
+INTRANET :
+	An intranet on the other hand is a local restricted network ,that enables people to share information within organizaton
+	the intranet create connections inside an organizations
+	ex: privateip
+	private ip stated is = 10, 192, 172
+===================##################===================== 
+Q :what is the static ip and dynamic ip 
+ ans : static : 
+	=> when a device is assigned a static ip the adress does not change 
+	=>never change when you reboot on your clode 
+ 	=> server always used to static ip 
+	=> by default in the clode static ip are allowed right now =5 ,here we can increaif you want
+       dynamic:
+	=>when you assigend the dynamic ip ,if  you system will restart or change the location the ip will lose or release
+====##########################====================================
+Q:i don't want lose my ip what concepet are using 
+ans: Static elastic ip concept
+ =============###############################\
+
+NOTE :
+               i have hdd  i want  to copy data into another hdd
+
+		or
+	how to take ebs volume backups
+
+
+ans :  we have schdule wiach takes  te ebs volume backups,that is day out off ussinees time thhat mean mid night are sometime 
+	==> every day will take backup
+	==>
+Q: you have how many orginize hdd
+ans : we have one hdd 
+   	==>if you have using 90 days backups and some of oldbackups autimaticlly dalete  
+	==>it depends on application like60 days or 90 days 
+====================#################################================
+
+automatically deleting the snapshot are called lifecycle policy for snapshot
+
+======================############################++++++++==============
+Q: i want to delete automatically backups what conceoat ae using 
+ans : we are using elastic ip concept
+
+Q: what is drawback in if you keep one year back 
+ans : cost 
+
+Q:Snapshot iswhat kind if storage
+ans : snapshot is block storage  
+	==>ebs are also store in blocks 	
+	==> all snapshot arestored in S3 
+	==>EBS diffrent then s3
+	==>block  = s3 	
+	==>s3 =google drive 
+
+
+
+============================##########################================================
+Q: launching the one instance using aws ec2 macine 
+
+ans : 
+
+
+     loging to aws account and go to ec2 machine 
+
+here selcet #ec2 dash board 
+	    #runninig instance 
+	    #launching instance 
+	    #here selcet whhat you need launching instance name and serch after that go to the selcet ot entre
+	     imp:you have to cross check wheather instance is free or cost,if there is free can you procede
+	    #configure to instance
+		here no change any data 
+	    #add storage
+		here how much volume spaace would you selcet  
+   	    #add tages	
+		agian add tags select 
+ 		  here change the some data that is 	
+		key		volume
+		Name		webserver
+		environment	labs
+		team		labs
+		parpose		learning 
+	 #next
+	 #configure to security group
+	 here change security group name and decription
+       security gropu name is webser-sg
+	decription is webserver-sg
+	source is anywhere
+	#next
+	#launch	
+	here chnage is 
+     (new  keypair)
+     (linux-webserver)
+                (dowanload key) select this option
+ 	#launch instance
+	#view instance	
+
+now are you sucussfully launching the webserver instance 
+
+
+
+task 2: how to create snapshot 
+	 
+	#go to ec2 dashboard
+	#running instance 
+	#select which instance snapshot and scroll down and find the 
+           root device:/dev/sd1 here click nowopen the 	EBS id ,copy the ID 
+
+and agaiin go to the #ec2 dashboard	
+		     #shapshot	
+		     #actions
+		     #create snapshot
+		     here first box paste the id
+			second box type the snapshot name 
+			# create snapshopt 
+			# refresh 
+				now see the ec2 dashboard snapshotis create
+
+task 3: how to assign the elastic ip in unstance 
+
+		#ec2 dashborad
+		#elelastic ips	
+		#allucate elastic ip adress 
+                  here no changes any data	
+		#allocate
+		#refresh
+select the instace 	
+		#actions
+		#associate elastic ip adress
+			here click the inside of the  box it will coming automatically od select that 	
+		#associate
+		now task is finsih 
+
+     		# refresh 
+
+TASK 4: how to release ip adress
+		#ec2 dashboard 
+		#elastic ip 
+		here selcet the instance and first de assign and de associate 
+		#select instance 
+		#actions 
+		#de associate iparedss	
+		#de associative
+again go to #actions 
+	    #release ip adress
+ 	    #release 
+
+now coming the ec2 dashborad and #refresh 
+
+
+
+task 5:  how to connect the linux o.s to instance 
+instnace side :
+		#ecc2 dashborad
+		#runninig instance	
+		#select instance
+		#connect
+		#ec2 instance connect
+		#connect
+		#now display the linux os 
+
+TASK 6:how to connect server ,outside tool gitbash
+
+
+	local machine go to where .pem file stored 
+	#right click
+	#git bash here
+	#ssh -i (pem file name ) ec2-user2@paste the server ip 
+	#to connect 
+
+
+
+
+====================############################=====================
+class 2:00:31 08-02-2021:
+
+EFS : elastic file systm
+	==>once they got approvied they will give a going to aws account first taken is 
+	       deployeement dai-grams 
+				Any new project is coming first take is deployeement dia -grms
+	==> without volume you can not create ec2 machine 
+	==>AWS is multiple types of security 
+		1)  vpc
+		2)subnet
+		2)nacl
+		3)security group
+	==>when you create ec2 machine during the option auto assign public status -enable
+	==>if it not disable you will get privite ip 
+	==>the ec2 machine is zone not a regional
+	==>
+=================########################=================
+STATUS CHECK:
+  		there is 1)system status 
+		             2)instance status
+Q:if any problem is data centre 
+ans : here status will fail ,must be check the status
+Q: who will take  to care of the data centre respondblity
+ans : AWS
+Q:systen status fail you  data centre is wrong and power off .network 
+ans :  the recomended to stop and start instance ec2 
+				when you do the start and stop sevrice vm is moved in one hdd to anither hdd
+Q: your server is running you installed software beconz that sifware is not connected to you  who maid the slove this 
+ans : me and my
+=========================================================================
+instance status :
+Q: your server is running ,you install the some softweres,becoz that softwere is noy connected to you 
+an: here who maid the solve the that ,(you),,this retries that your instance operation system is accepting treceroute ,
+	if failse you may need to reboot the yuor instance ,
+NOTE:
+1)alarm is called alertts
+2)something goes to your ec2-instance you will get the alerts
+==============================###############======================
+launchting time :
+
+		first we will show launching date and time ,
+		after you will restart instance or machine the date and time will restart time 
+=======#############################++++++++++++++++++++++++
+monitoring :
+		AWS service name is clodewatch
+		there is to change to your cpu bottom nic ,and your machine is under havy load. 
+		the machine automatically it will go for reboot
+
+In clode watch we have two types of monitoring 
+1)basic
+2)detailed
+
+1)basic ==>every 5 minitus collect data from by defaults
+2)detailed==>every 1 mimt collect data from by defaults
+
+
+Q: what are the tool do you use monitoring
+ans:	1)appdynamic
+	2)newredic
+	3)data dog
+	4)nagios
+Q:when i hearing the essential how many calculate the clode watch 
+ans:	1)essential
+	2)associative
+	3)architecture
+
+NOTE :
+	here you will get instance id,that id will generated by automatically aws will create
+
+
+ADMIN FLOW====>Admin=====>usingtools======>based on the 
+ENDUSER FLOW=====>Enduser==>browser===>remote server
+
+
+		 
+========================#################################+================
+TASK 5: how to stop the instance 
+
+		#ec2 dash board
+		#running instance
+		#select instance
+		#instance state
+		#stop
+		#stop
+		#refresh
+TASK 6: how to delete instance
+
+		#ec2 dashborad	
+		#running instance	
+		#selecet instance	
+		#instance state
+		#terminate instance
+		#next	
+		#refresh
+
+TASK 7 :how to enaled datiled monitoring
+	
+	#ec2 dashboard
+	#running instance 	
+	#select instance
+	#actions\
+	#monitoring and troubleshoot
+	#manage detalied monitoring
+	#enable		
+	#save	
+
+
+=========================#########################==========================
+class =4
+
+NOTE :
+  windows ---remote desktop 
+  liux-----putty
+	---gitbach
+	---mobxterm
+	--cssxh
+  imp: if data center also using the gitbash remote server or tool 
+     
+
+Q: why  im using gitbash
+ans:	to connect the linux server 
+	and here we ahve run the linux and winddows commends
+
+=====================###################=========================
+
+
+how to install gitbash
+
+
+www.gitbash.com
+windows
+open
+next
+next
+path next 
+
+note: if you wnat change path you can that is called custum installation
+	when you install softwere or package two types 1)defaults 2)custom
+	by defaults path is c drive
+	if you can change the pathtaht is called custom installation
+
+next
+yes
+next
+next
+continue till install 
+finish 
+===============================###############################======================= 
+
+
+NOTE:
+	 when you connect with out side to server you need a public ip
+
+	git bash to linux ==>
+	ssh -i ".epmfile " ec2-user@publicip port number
+
+	ssh -i linux-webserverv ec2-user@192.168.0.131 22
+
+	here i = identity
+during  o.s creation one first user will be created username root two types 
+
+1) system admin user==root
+2) normal user ==ec2-user
+
+Q: i want to pem file list
+ans: #ls -ltr *.pemfile name 
+Q: how to port number leasting or not 
+ans : #netstat -anlp | grep ":22"
+
+Q: how to check my trace route is giong or not 
+ans: using trace route commaned
+    #traceroute ipadress(source)
+
+Q: i want know outside port number is leasting or not 
+ans: telnet 
+
+Q: what do you using telnet 
+ans : port leasting or not\
+	to check how many requests
+	to check how many clients
+
+Q: how to satrt service 
+ans : #systemctl start httpd
+
+Q: ssh will connectport number is 
+ans : 22 service is sshd
+Q:browser will connect what server
+ans : httpd ,port 80
+Note :  i will stop 80port number ====enduser will not cinnect 
+	i will stop the 22 port number ===admin will not connect 
+	i will stop the server ===both are not connect 
+	i have name in which server got registred ==DNS 
+	
+
+TASK1: create a apache web page and access the from outside
+
+go to ami-linux2 instance 
+here copy the public ip
+go to gotbash
+connect to ami-linux serverv 
+$ssh -i .pem ec2-user@public ip
+swicth user root
+$sudo su -
+and install httpd package
+#yum install httpd
+httpd service start 
+#systemctl start httpd 
+do you want data will keep inside the page
+#echo "</h1>welcome to apace </h1>" > /var/www/html/index.html
+
+go to web page paste the ami-linux-instance public ip 
+out will show 
+clikc on page
+the out put is "welcome apache "
+
+=====================###############################=========================================
+CLASS =5 
+NOTE : ec2 is the running operating system 
+
+Q: how to find node and instance ip adress 
+ans :#nslookup (public DNS cpoy)
+note : NS = name server 
+	who  has the register ip adress (AWS)
+	when you crate ec2 machine automatically they are registared 
+	
+
+Q: i want to check weather website work or not 
+ans :  first we have checkt it security group allowed or not ,for the ec2 machine 
+	goec2 machine 
+	scrolll down 
+	sercuruty group	
+	click	
+	check in the inbounede rolus
+	here 80 ,2 is allowed 
+new page:
+     copy the ec2 machine pubilc ip 
+	connecton refused  
+	click on the browser
+	right click \
+	incepect
+	and go the call network 
+	here good approch is presurelog 
+	(Q click that isclear it )
+	agian retry it 
+	
+
+Q: i want see what is the responds 
+ans : right click
+	incepect 
+	nerwork 	
+	select person (1 st)
+	headers \
+	general \		
+	 here what us the borwser to you used 
+
+	preview here reponds the data
+	responds 
+	timing  how long it lookit person you can see here 
+	
+
+Q: how to check it server speed 
+ans : right click 
+	incepect 
+	network 
+	selecet server
+	timing 
+	here you want see output 
+ 
+
+Q: i want see adi calls ,how amny calls went ,one website to anther website in the request or web service calls 
+ans :
+	right click web browser 
+	incepect	
+	network 
+	XHR 	
+
+
+
+task 8: install apache and run page  the outside into instance 
+ ;login into the gitbash to ec2 mmachine 
+
+	#yum update -y
+	#yum install httpd
+	#systemctl start httpd
+	#systemctl enable httpd 
+
+go the iec2 machine select insstance copy the public ip 
+new page and paste the public ip 
+the out will come 
+
+Q: i wnat to keep inside the date 
+anss : 
+	go to the git bash 
+	#echo "<h1>welcome to apache</h1>" > /var/www/html/index.html
+	#systemctl start httpd
+go to new page refrsh the page 
+output will come 
+
+=========================########################+=========================
+	
+CLASS =6   COST
+
+
+	
+		
+
+
