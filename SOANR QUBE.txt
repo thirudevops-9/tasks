@@ -1,0 +1,138 @@
+SONAR QUBE : create ec2 machine and installation the sonar qube 
+
+
+Pre-requistes:
+Instance should have at least 2 GB RAM. For AWS, instance should be atleast t2.small
+
+
+Login to gitbash and connect to the ec2 machine 
+# ssh -i .pem ubtuntu@instance p.ip
+
+
+Install Open JDK 11
+#sudo apt-get update && sudo apt-get install default-jdk -y
+
+Postgres Installation
+#sudo apt-get -y install postgresql postgresql-contrib
+#sudo systemctl start postgresql
+#sudo systemctl enable postgresql
+
+
+Login as postgres user
+#sudo su - postgres
+
+createthe sonar user 
+#createuser sonar
+
+Switch to sql shell by entering
+#psql
+
+Creat the passwd of soanr user and give a permission 
+
+>ALTER USER sonar WITH ENCRYPTED password 'password';
+
+>CREATE DATABASE sonarqube OWNER sonar;
+
+> GRANT ALL PRIVILEGES ON DATABASE sonarqube to sonar;
+
+>\q
+$exit
+
+
+
+ Download SonarQube and Install
+
+#sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.6.0.39681.zip
+#sudo unzip sonarqube*.zip -d /opt
+
+Rename the file
+#sudo mv /opt/sonarqube-8.6.0.39681 /opt/sonarqube -v
+
+
+Modify sonar.properties file
+#sudo vi /opt/sonarqube/conf/sonar.properties
+
+Add the below line in sonar.properties
+sonar.jdbc.username=sonar
+sonar.jdbc.password=password
+
+sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube
+:wq!
+
+
+
+Edit the sonar script file and set RUN_AS_USER
+#sudo vi /opt/sonarqube/bin/linux-x86-64/sonar.sh
+Add enable the below line 
+RUN_AS_USER=sonar
+
+
+Create Sonar as a service(this will enable to start automatically when you restart the server)
+Execute the below command:
+
+#sudo vi /etc/systemd/system/sonar.service
+
+add the below code in green color:
+[Unit]
+Description=SonarQube service
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
+LimitNOFILE=131072
+LimitNPROC=8192
+User=sonar
+Group=sonarGroup
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+Save the file by entering 
+:wq!
+
+
+
+Kernel System changes
+
+#sudo vi /etc/sysctl.conf
+
+Add the following lines to the bottom of that file:
+
+vm.max_map_count=262144
+fs.file-max=65536
+ulimit -n 65536
+ulimit -u 4096
+
+
+Next, we're going to edit limits.conf. Open that file with the command:
+#sudo vi /etc/security/limits.conf
+At the end of this file, add the following: 
+
+sonarqube   -   nofile   65536
+sonarqube   -   nproc    4096
+
+Start SonarQube Now
+#sudo systemctl start sonar
+
+#sudo systemctl enable sonar
+
+#sudo systemctl status sonar
+
+
+(Now Restart EC2 instance by going to AWS console and stop/start the EC2 instance)
+Once restarted EC2 instance, login again and check the Sonar logs:
+
+tail -f /opt/sonarqube/logs/sonar*.log
+
+
+now to go to browser :  ec2 ipadresss:9000 
+
+
+
+
+output : sonar qube page will open 
+
