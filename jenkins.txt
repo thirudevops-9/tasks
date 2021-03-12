@@ -1,0 +1,60 @@
+JENKINS : 
+
+	$ sudo apt update -y
+	$ sudo apt uppgrade -y
+	$ sudo apt install default-jdk -y
+	 
+
+
+	 add the repository key to the system:
+	 $ wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+
+       	$ sudo nano /etc/apt/sources.list
+	you have to add this line in last line 
+
+	deb https://pkg.jenkins.io/debian-stable binary/
+
+
+	update the apt 		
+       	$ sudo apt-get update
+
+
+	to install the jenkins
+  	$ sudo apt-get install jenkins -y
+
+	$ start service and enable service and to chekc status of the service 
+	$ sudo systemctl start jenkins-service 
+	$ sudo systemctl enable  jenkins-service 
+	$ sudo systemctl status jenkins-service 
+
+
+
+	
+goto the new web-page and paste the ec2-ubuntu instance pub-ip:8080
+
+	ex :35.172.200.1:8080
+
+
+output : the jenkins page open aftern that you have to copy the code 
+	  and go to git bach 
+
+	$ sudo cat (paste the code )
+the output will show of enecrypted passwd here you have copy the code 
+	and go to jenkins page paste the empty box 
+	after the page will show 
+	username:jenkins
+	passwd: jenkins
+	c.passwd:jenkins
+	full name:jenkins
+	eminal: sivachandu959@gmail.com
+   	start 
+	start the jenkins inatllaton '	
+	
+
+the final output is 
+			dynamic jenkins page will open 
+
+
+ 
+
